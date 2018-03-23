@@ -95,18 +95,18 @@ public class CharacterControl : MonoBehaviour
             Death();
         }
 
-        if(hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
-			
-            //remove the coin from field of play
+		if(hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
+
+			//remove the coin from field of play
 			Destroy(hit.gameObject);
 
-            //take the letter associated with the coin
-            grabLetter = hit.gameObject.GetComponentInChildren<TextMesh>().text.ToString();
+			//take the letter associated with the coin
+			grabLetter = hit.gameObject.GetComponentInChildren<TextMesh>().text.ToString();
 
 
-            Debug.Log("LastLetterIssued: " + CoinPick.getCurrentLetter() + " CoinLetter " + grabLetter);
+			Debug.Log("LastLetterIssued: " + CoinPick.getCurrentLetter() + " CoinLetter " + grabLetter);
 
-            //determine if that letter was correct
+			//determine if that letter was correct
 			if (grabLetter.Equals(CoinPick.getCurrentLetter())) {
 				//update the partial word text
 				partialWordText.text = null;
@@ -114,20 +114,29 @@ public class CharacterControl : MonoBehaviour
 				partialWordText.text = partialWord;
 				CoinPick.currentLetterIndex++;
 
+				//give a score boost
+				Score.score++;
+
 				//check if word was spelled and then reset CoinPick indexes
 				//while maintaining the word index
 				if (partialWord.Equals(CoinPick.currentWord)) {
 					int oldWordIndex = CoinPick.wordArrayIndex;
+					CoinPick.wordEndCount = CoinPick.counter;
 					CoinPick.ResetVars ();
 					CoinPick.wordArrayIndex = oldWordIndex + 1;
 					partialWord = null;
 
+					//this if statement checks to see how fast a player spelled a word
+					//if fast enough we give them a score bonus
+					if ((CoinPick.wordEndCount - CoinPick.wordStartCount) <= (CoinPick.currentWord.Length + 1)) {
+						Score.score = Score.score + 5;
+					}
 				}
 				//increment letter index and return out of method
 				return;
 
 			}
-            //end the game if the letter was incorrect
+			//end the game if the letter was incorrect
 			else if (grabLetter.Equals(null)) {
 				return;
 			} 
