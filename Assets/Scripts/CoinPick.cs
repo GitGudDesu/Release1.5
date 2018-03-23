@@ -23,12 +23,8 @@ public class CoinPick : MonoBehaviour {
     public static int currentLetterIndex = 0;
     public static char[] letterArray = new char[20];
     private string chars = "abcdefghijklmnopqrstuvwxyz";
+    public static int counter = 1;
     public static String lastCorrectLetter;
-
-	//game mechanic variables
-	public static int counter = 0;
-	public static int wordStartCount = 0;
-	public static int wordEndCount = 0;
 
 
     // Use this for initialization
@@ -66,7 +62,6 @@ public class CoinPick : MonoBehaviour {
 		coins = GameObject.FindGameObjectsWithTag("Coin");
 		if (currentLetterIndex == 0) {
 			wordText.text = currentWord;
-			wordStartCount = counter;
 		}
 
 		//loop through all the coins and make sure they are value assigned
@@ -125,7 +120,5 @@ public class CoinPick : MonoBehaviour {
         letterArray = null;
         wordArrayIndex = 0;
         counter = 0;
-		wordEndCount = 0;
-		wordStartCount = 0;
     }
 }
