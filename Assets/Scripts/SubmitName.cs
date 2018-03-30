@@ -11,6 +11,8 @@ public class SubmitName : MonoBehaviour
 	{
     //create array lists for the DB
     private ArrayList userList = new ArrayList();
+	private ArrayList teacherList = new ArrayList();
+
     public Button LoginButton;
     void Start ()
 		{
@@ -38,24 +40,44 @@ public class SubmitName : MonoBehaviour
 			//create query for user name
 			IDbCommand dbcmd = dbcon.CreateCommand ();
 			const string sql =
-				"SELECT * " +
+				"SELECT StuUserName " +
 				"FROM student";
 			dbcmd.CommandText = sql;
 			IDataReader reader = dbcmd.ExecuteReader ();
 
 			while (reader.Read()) 
 			{
-				string user = reader.GetString(2);
+				string user = reader.GetString(0);
 
 				Debug.Log(user);
 
 				userList.Add(user);
 
 			}
+		//create query for teacher login
+		dbcmd = dbcon.CreateCommand ();
+		const string sql2 =
+			"SELECT TeachUserName " +
+			"FROM teacher";
+		dbcmd.CommandText = sql2;
+		reader = dbcmd.ExecuteReader ();
+
+		while (reader.Read()) 
+		{
+			string teacher = reader.GetString(0);
+
+			Debug.Log(teacher);
+
+			teacherList.Add(teacher);
+
+		}
 			
 		if (userList.Contains (arg0)) {
             LoginButton.interactable = true;
-		} else {
+		} else if (teacherList.Contains (arg0)) {
+			SceneManager.LoadScene("TeacherMenu");
+		}
+		else {
             SceneManager.LoadScene("Login");
         }
 		}
