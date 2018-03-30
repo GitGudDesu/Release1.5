@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Username Here...
 --- !u!222 &8879737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Number here...
 --- !u!222 &197838249
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: Number here...
 --- !u!222 &218282991
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -707,7 +707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 600, y: -105}
+  m_AnchoredPosition: {x: 600, y: -111}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &320445096
@@ -1103,6 +1103,7 @@ GameObject:
   - component: {fileID: 543288440}
   - component: {fileID: 543288442}
   - component: {fileID: 543288441}
+  - component: {fileID: 543288443}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1161,6 +1162,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 543288439}
+--- !u!114 &543288443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 543288439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc546a14ccc7db4a893dc3c5ca95137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrStudentUserName: {fileID: 1117386492}
+  AddStudent: {fileID: 0}
 --- !u!1 &814055015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,6 +1469,7 @@ GameObject:
   - component: {fileID: 1117386494}
   - component: {fileID: 1117386493}
   - component: {fileID: 1117386492}
+  - component: {fileID: 1117386495}
   m_Layer: 5
   m_Name: UserNameInput
   m_TagString: Untagged
@@ -1531,7 +1546,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1117386490}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -1579,6 +1605,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1117386490}
+--- !u!114 &1117386495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1117386490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc546a14ccc7db4a893dc3c5ca95137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrStudentUserName: {fileID: 1117386492}
+  AddStudent: {fileID: 1841853667}
 --- !u!1 &1152601150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2505,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: First Name
+  m_Text: TeacherID
 --- !u!222 &1627385870
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2625,7 +2664,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1841853668}
   m_OnClick:
     m_PersistentCalls:

@@ -61,7 +61,7 @@ public class CreateUser : MonoBehaviour
 		}
 
 		private void SubmitLastName(string input) {
-		lastName = input
+        lastName = input;
 		}
 
 		private void SubmitGrade(string input) {
