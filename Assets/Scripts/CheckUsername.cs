@@ -12,7 +12,7 @@ public class CheckUsername : MonoBehaviour
     public InputField GrStudentUserName;
     public Button AddStudent;
     //create array lists for the DB
-    private ArrayList userList = new ArrayList();
+    private static ArrayList userList = new ArrayList();
 
     void Start()
     {
@@ -50,20 +50,59 @@ public class CheckUsername : MonoBehaviour
 
     }
 
+    public static void updateUserList()
+    {
+        //direct db connection to where the db is stored in app
+        //and open connection
+        const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+        IDbConnection dbcon = new SqliteConnection(connectionString);
+        dbcon.Open();
+
+        //create query for user name
+        IDbCommand dbcmd = dbcon.CreateCommand();
+        const string sql =
+            "SELECT StuUserName " +
+            "FROM student";
+        dbcmd.CommandText = sql;
+        IDataReader reader = dbcmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            string user = reader.GetString(0);
+
+            Debug.Log(user);
+
+            userList.Add(user);
+
+        }
+    }
+
     private void CheckName(string arg0)
     {
 
 
         if (userList.Contains(arg0))
         {
-            AddStudent.interactable = true;
+            SceneManager.LoadScene("AddUser");
+            GrStudentUserName.text = "That user name is already taken.";
+
+
         }
         else
         {
-            GrStudentUserName.text = "That user name is already taken.";
-
+            AddStudent.interactable = true;
         }
 
+    }
+
+    public static bool IsTaken(String checkName)
+    {
+        if (userList.Contains(checkName))
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }
 
