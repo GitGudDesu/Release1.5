@@ -13,6 +13,10 @@ public class CharacterControl : MonoBehaviour
     private Vector3 moveVector;
     private float verticalVelocity = 0.0f;
 
+    private Rigidbody rb;
+    static int jumpState = Animator.StringToHash("Base Layer.Jump");
+    private AnimatorStateInfo currentBaseState;
+
     //player movement restriction
     private float animationDuration = 3.0f;
     private float startTime;
@@ -80,6 +84,7 @@ public class CharacterControl : MonoBehaviour
         {
             anim.Play("SLIDE00", -1, 0f);
         }
+
     }
 
 
@@ -94,8 +99,13 @@ public class CharacterControl : MonoBehaviour
             anim.Play("DAMAGED01", -1, 0f);
             Death();
         }
+        //for hitting the collectible
+        if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "collectible") {
+            Destroy(hit.gameObject);
+            ScoreforCoin.CoinScore++;
+        }
 
-		if(hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
+            if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
 
 			//remove the coin from field of play
 			Destroy(hit.gameObject);

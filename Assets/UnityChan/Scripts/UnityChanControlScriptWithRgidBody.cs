@@ -28,7 +28,7 @@ public class UnityChanControlScriptWithRgidBody : MonoBehaviour
 	// 旋回速度
 	public float rotateSpeed = 2.0f;
 	// ジャンプ威力
-	public float jumpPower = 3.0f; 
+	public float jumpPower = 6.0f; 
 	// キャラクターコントローラ（カプセルコライダ）の参照
 	private CapsuleCollider col;
 	private Rigidbody rb;
