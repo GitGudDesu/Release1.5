@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags: []
+=======
+  tags:
+  - Enemy
+  - Coin
+  - Input
+>>>>>>> parent of a43b7f2... Pause Option and Esc Menu added
   layers:
   - Default
   - TransparentFX

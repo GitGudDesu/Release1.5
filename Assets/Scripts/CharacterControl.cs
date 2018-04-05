@@ -13,10 +13,6 @@ public class CharacterControl : MonoBehaviour
     private Vector3 moveVector;
     private float verticalVelocity = 0.0f;
 
-    private Rigidbody rb;
-    static int jumpState = Animator.StringToHash("Base Layer.Jump");
-    private AnimatorStateInfo currentBaseState;
-
     //player movement restriction
     private float animationDuration = 3.0f;
     private float startTime;
@@ -28,16 +24,12 @@ public class CharacterControl : MonoBehaviour
     public Text WrongWordText;
     private String grabLetter;
     private String partialWord;
-    public GameObject pausemenuUI;
-    public static bool GameisPaused = false;
 
-    public bool pause;
-  
 
     // Use this for initialization
     void Start() {
         anim = GetComponent<Animator>();
-        pause = false;
+
         controller = GetComponent<CharacterController>();
         startTime = Time.time;
     }
@@ -45,12 +37,11 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-
-        if (isDeath) {
+        if(isDeath)  {
             return;
         }
 
-        if (Time.time - startTime < animationDuration) {
+        if(Time.time - startTime < animationDuration) {
             controller.Move(Vector3.forward * speed * Time.deltaTime);
             return;
         }
@@ -64,9 +55,9 @@ public class CharacterControl : MonoBehaviour
             verticalVelocity -= gravity * Time.deltaTime;
         }
 
-        //x - left and right used for android
-        moveVector.x = Input.GetAxisRaw("Horizontal") * speed / 2;
-        if (Input.GetMouseButton(0))
+        //x - left and right
+        moveVector.x = Input.GetAxisRaw("Horizontal") * speed/2;
+        if(Input.GetMouseButton (0))
         {
             if (Input.mousePosition.x > Screen.width / 2)
                 moveVector.x = 1;
@@ -78,7 +69,7 @@ public class CharacterControl : MonoBehaviour
         //z - forward and backward
         moveVector.z = speed;
 
-        controller.Move((moveVector * speed) * Time.deltaTime);
+        controller.Move((moveVector* speed) * Time.deltaTime);
 
         if (Input.GetKeyDown("w"))
         {
@@ -89,7 +80,6 @@ public class CharacterControl : MonoBehaviour
         {
             anim.Play("SLIDE00", -1, 0f);
         }
-
     }
 
 
@@ -104,6 +94,7 @@ public class CharacterControl : MonoBehaviour
             anim.Play("DAMAGED01", -1, 0f);
             Death();
         }
+<<<<<<< HEAD
         //for hitting the collectible
         if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "collectible") {
             Destroy(hit.gameObject);
@@ -119,15 +110,21 @@ public class CharacterControl : MonoBehaviour
 
 >>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			//remove the coin from field of play
+=======
+
+        if(hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
+			
+            //remove the coin from field of play
+>>>>>>> parent of a43b7f2... Pause Option and Esc Menu added
 			Destroy(hit.gameObject);
 
-			//take the letter associated with the coin
-			grabLetter = hit.gameObject.GetComponentInChildren<TextMesh>().text.ToString();
+            //take the letter associated with the coin
+            grabLetter = hit.gameObject.GetComponentInChildren<TextMesh>().text.ToString();
 
 
-			Debug.Log("LastLetterIssued: " + CoinPick.getCurrentLetter() + " CoinLetter " + grabLetter);
+            Debug.Log("LastLetterIssued: " + CoinPick.getCurrentLetter() + " CoinLetter " + grabLetter);
 
-			//determine if that letter was correct
+            //determine if that letter was correct
 			if (grabLetter.Equals(CoinPick.getCurrentLetter())) {
 				//update the partial word text
 				partialWordText.text = null;
@@ -135,29 +132,20 @@ public class CharacterControl : MonoBehaviour
 				partialWordText.text = partialWord;
 				CoinPick.currentLetterIndex++;
 
-				//give a score boost
-				Score.score++;
-
 				//check if word was spelled and then reset CoinPick indexes
 				//while maintaining the word index
 				if (partialWord.Equals(CoinPick.currentWord)) {
 					int oldWordIndex = CoinPick.wordArrayIndex;
-					CoinPick.wordEndCount = CoinPick.counter;
 					CoinPick.ResetVars ();
 					CoinPick.wordArrayIndex = oldWordIndex + 1;
 					partialWord = null;
 
-					//this if statement checks to see how fast a player spelled a word
-					//if fast enough we give them a score bonus
-					if ((CoinPick.wordEndCount - CoinPick.wordStartCount) <= (CoinPick.currentWord.Length + 1)) {
-						Score.score = Score.score + 5;
-					}
 				}
 				//increment letter index and return out of method
 				return;
 
 			}
-			//end the game if the letter was incorrect
+            //end the game if the letter was incorrect
 			else if (grabLetter.Equals(null)) {
 				return;
 			} 
@@ -170,21 +158,6 @@ public class CharacterControl : MonoBehaviour
 			}
         }
     }
-
-    void Resume()
-    {
-        pausemenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameisPaused = false;
-    }
-
-    void Pause()
-    {
-        pausemenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameisPaused = true;
-    }
-
     //call death and reset CoinPick indexes
     private void Death()
     {

@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class SubmitName : MonoBehaviour
 	{
+<<<<<<< HEAD
 	//create array lists for the DB
 	private ArrayList userList = new ArrayList();
 	private ArrayList teacherList = new ArrayList();
@@ -22,8 +23,14 @@ public class SubmitName : MonoBehaviour
 
 	public Button LoginButton;
 		void Start ()
+=======
+    //create array lists for the DB
+    private ArrayList userList = new ArrayList();
+    public Button LoginButton;
+    void Start ()
+>>>>>>> parent of a43b7f2... Pause Option and Esc Menu added
 		{
-			var input = GameObject.Find("InputField").GetComponent<InputField>();
+            var input = GameObject.Find("InputField").GetComponent<InputField>();
 			var se= new InputField.SubmitEvent();
 			se.AddListener(CheckName);
 			input.onEndEdit = se;
@@ -34,6 +41,7 @@ public class SubmitName : MonoBehaviour
 
 		}
 
+<<<<<<< HEAD
 		public static int getTeachID()
 <<<<<<< HEAD
 		{
@@ -132,26 +140,33 @@ public class SubmitName : MonoBehaviour
 						"SELECT TeachID " +
 						"FROM teacher " +
 						"WHERE TeachUserName = @arg0";
+=======
+		private void CheckName(string arg0)
+		{
+>>>>>>> parent of a43b7f2... Pause Option and Esc Menu added
 
-					dbcmd.Parameters.Add(new SqliteParameter("@arg0", arg0));
-					dbcmd.CommandText = sql3;
-					reader = dbcmd.ExecuteReader();
-					while (reader.Read())
-					{
-						int teachID = Int32.Parse(reader.GetString(0));
 
-						Debug.Log(currTeachID);
+			//direct db connection to where the db is stored in app
+			//and open connection
+			const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+			IDbConnection dbcon = new SqliteConnection (connectionString);
+			dbcon.Open ();
 
-						currTeachID = teachID;
+			//create query for user name
+			IDbCommand dbcmd = dbcon.CreateCommand ();
+			const string sql =
+				"SELECT * " +
+				"FROM student";
+			dbcmd.CommandText = sql;
+			IDataReader reader = dbcmd.ExecuteReader ();
 
-					}
+			while (reader.Read()) 
+			{
+				string user = reader.GetString(2);
 
-					SceneManager.LoadScene("TeacherMenu");
-				}
-				else {
-					SceneManager.LoadScene("Login");
-				}
+				Debug.Log(user);
 
+				userList.Add(user);
 
 =======
 
@@ -250,5 +265,12 @@ public class SubmitName : MonoBehaviour
 
 >>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			}
+			
+		if (userList.Contains (arg0)) {
+            LoginButton.interactable = true;
+		} else {
+            SceneManager.LoadScene("Login");
+        }
+		}
 }
 

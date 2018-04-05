@@ -4,4 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes: []
+=======
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Login.unity
+    guid: 8ac8973597989f545a7989a590476b2f
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: faa4e40a080c75941bc3415fab4711d0
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 3787e5cc380825b428b1f8ca61c349f5
+>>>>>>> parent of a43b7f2... Pause Option and Esc Menu added

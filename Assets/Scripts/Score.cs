@@ -11,10 +11,8 @@ public class Score : MonoBehaviour
     private int maxDifficultyLevel = 2;
     private int scoreToNextLevel = 100;
     private bool isDeath = false;
-    private bool isEsc = false;
     public Text scoreText;
     public DeathMenu deathMenu;
-    public EscMenu escMenu;
 
     // Use this for initialization
     void Start()
@@ -24,17 +22,11 @@ public class Score : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (isDeath)
-        {
-            return;
-        }
-
-        if(isEsc)
-        {
+        if(isDeath){
             return;
         }
         if(score >= scoreToNextLevel) {
-           // LevelUp();
+            LevelUp();
         }
         score += Time.deltaTime;
         scoreText.text = ((int)score).ToString();
@@ -50,7 +42,6 @@ public class Score : MonoBehaviour
 
         Debug.Log(difficultyLevel);
     }
-
 
     public void OnDeath() {
         isDeath = true;
