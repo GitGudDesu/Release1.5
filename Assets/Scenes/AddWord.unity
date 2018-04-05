@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 96911006}
   - component: {fileID: 96911005}
   m_Layer: 5
-  m_Name: GradeInput
+  m_Name: DifficultyInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 189071721}
   - component: {fileID: 189071720}
   m_Layer: 5
-  m_Name: LastNameInput
+  m_Name: WordInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 268254684}
   - component: {fileID: 268254683}
   m_Layer: 5
-  m_Name: AddStudent
+  m_Name: AddWord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,13 +429,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 268254681}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f912d2634e386564d8f96a671e1915d6, type: 3}
+  m_Script: {fileID: 11500000, guid: f18cf3024787e2e4ca2f7bdfb14d09ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StudentUserName: {fileID: 1701891729}
-  FirstName: {fileID: 1818157462}
-  LastName: {fileID: 189071720}
-  Grade: {fileID: 96911005}
+  SetID: {fileID: 1818157462}
+  Word: {fileID: 189071720}
+  Difficulty: {fileID: 96911005}
+  Grade: {fileID: 1701891729}
   addButton: {fileID: 268254684}
   addedText: {fileID: 2087307799}
 --- !u!114 &268254684
@@ -534,7 +534,7 @@ GameObject:
   - component: {fileID: 337056721}
   - component: {fileID: 337056720}
   m_Layer: 5
-  m_Name: UserNameText
+  m_Name: GradeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -590,7 +590,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: User Name
+  m_Text: Grade
 --- !u!222 &337056721
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 615228517}
   - component: {fileID: 615228516}
   m_Layer: 5
-  m_Name: StartGameText
+  m_Name: AddWordText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -746,7 +746,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Add Student
+  m_Text: Add Word
 --- !u!222 &615228517
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 755184881}
   - component: {fileID: 755184880}
   m_Layer: 5
-  m_Name: LastNameText
+  m_Name: WordText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +994,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Last Name
+  m_Text: Word
 --- !u!222 &755184881
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1769,7 +1769,7 @@ GameObject:
   - component: {fileID: 1701891729}
   - component: {fileID: 1701891731}
   m_Layer: 5
-  m_Name: UserNameInput
+  m_Name: GradeInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1928,7 +1928,7 @@ GameObject:
   - component: {fileID: 1818157463}
   - component: {fileID: 1818157462}
   m_Layer: 5
-  m_Name: FirstNameInput
+  m_Name: setIDInput
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 2012239857}
   - component: {fileID: 2012239856}
   m_Layer: 5
-  m_Name: FirstNameText
+  m_Name: SetIDText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2264,7 +2264,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: First Name
+  m_Text: SetID
 --- !u!222 &2012239857
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 2117720549}
   - component: {fileID: 2117720548}
   m_Layer: 5
-  m_Name: GradeText
+  m_Name: DifficultyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2486,7 +2486,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Grade Level
+  m_Text: Difficulty
 --- !u!222 &2117720549
 CanvasRenderer:
   m_ObjectHideFlags: 0
