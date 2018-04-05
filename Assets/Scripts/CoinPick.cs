@@ -64,7 +64,8 @@ public class CoinPick : MonoBehaviour {
 	void Update() {
 		coins = GameObject.FindGameObjectsWithTag("Coin");
 		if (currentLetterIndex == 0) {
-			wordText.text = currentWord;
+            if(wordText.text != null)
+			    wordText.text = currentWord;
 			wordStartCount = counter;
 		}
 

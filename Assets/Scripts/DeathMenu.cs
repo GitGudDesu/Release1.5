@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Data;
+using Mono.Data.SqliteClient;
+using System;
 
 public class DeathMenu : MonoBehaviour {
 
@@ -29,13 +32,63 @@ public class DeathMenu : MonoBehaviour {
         gameObject.SetActive(true);
         scoreText.text = ((int)score).ToString();
         isShowed = true;
+
     }
 
     public void Restart() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //direct db connection to where the db is stored in app
+        //and open connection
+        const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+        IDbConnection dbcon = new SqliteConnection(connectionString);
+        dbcon.Open();
+        IDbCommand dbcmd = dbcon.CreateCommand();
+
+        //create query for adding score
+        dbcmd = null;
+        dbcon.CreateCommand();
+        String command =
+        "INSERT INTO score " +
+        "(userID, totalScore, grade) " +
+        "VALUES (@two, @three, @four)";
+
+        //dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
+        dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
+        dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
+        dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
+
+        string sql = command;
+        Debug.Log(sql);
+        dbcmd.CommandText = sql;
+        IDataReader reader = dbcmd.ExecuteReader();
+        SceneManager.LoadScene("Menu");
+
     }
 
     public void ToMenu() {
+        //direct db connection to where the db is stored in app
+        //and open connection
+        const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+        IDbConnection dbcon = new SqliteConnection(connectionString);
+        dbcon.Open();
+        IDbCommand dbcmd = dbcon.CreateCommand();
+
+        //create query for adding score
+        dbcmd = null;
+        dbcon.CreateCommand();
+        String command =
+        "INSERT INTO score " +
+        "(userID, totalScore, grade) " +
+        "VALUES  @two, @three, @four)";
+
+        //dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
+        dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
+        dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
+        dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
+
+        string sql = command;
+        Debug.Log(sql);
+        dbcmd.CommandText = sql;
+        IDataReader reader = dbcmd.ExecuteReader();
         SceneManager.LoadScene("Menu");
     }
 }

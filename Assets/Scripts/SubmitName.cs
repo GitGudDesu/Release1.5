@@ -14,6 +14,7 @@ public class SubmitName : MonoBehaviour
 	private ArrayList teacherList = new ArrayList();
 	private static int currTeachID = 0;
 	private static int currStuID = 0;
+    private static string stuGrade;
 
 
 	public Button LoginButton;
@@ -38,8 +39,12 @@ public class SubmitName : MonoBehaviour
 		{
 			return currStuID;
 		}
+    public static String getStuGrade()
+    {
+        return stuGrade;
+    }
 
-		private void CheckName(string arg0)
+    private void CheckName(string arg0)
 			{
 
 
@@ -103,7 +108,25 @@ public class SubmitName : MonoBehaviour
 					currStuID = stuID;
 
 				}
-				LoginButton.interactable = true;
+                dbcmd = dbcon.CreateCommand();
+                const string sql5 =
+                    "SELECT Grade " +
+                    "FROM student " +
+                    "WHERE StuUserName = @arg0";
+
+                dbcmd.Parameters.Add(new SqliteParameter("@arg0", arg0));
+                dbcmd.CommandText = sql4;
+                reader = dbcmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string grade = reader.GetString(0);
+
+                    Debug.Log(grade);
+
+                stuGrade = grade;
+
+                }
+            LoginButton.interactable = true;
                 //if teacher username found, store teacherID for later use and take them to the teacher menu
 				} else if (teacherList.Contains (arg0)) {
 					dbcmd = dbcon.CreateCommand();

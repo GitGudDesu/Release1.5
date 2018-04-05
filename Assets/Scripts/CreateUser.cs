@@ -96,7 +96,7 @@ public class CreateUser : MonoBehaviour
                 String command =
                 "INSERT INTO student " +
                 "(TeacherID, StuUserName, FirstName, LastName, Grade) " +
-                "VALUES (@two, @three, @four, @five, @six)";
+                "VALUES (@two, @three, @four, @five, @six);";
 
                 //dbcmd.Parameters.Add(new SqliteParameter("@one", one));    
                 dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getTeachID()));
