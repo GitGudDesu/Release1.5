@@ -14,3 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 3787e5cc380825b428b1f8ca61c349f5
+  - enabled: 1
+    path: Assets/Scenes/TeacherMenu.unity
+    guid: 386ea599ba32bf14ebddfd952e710c85
+  - enabled: 1
+    path: Assets/Scenes/AddUser.unity
+    guid: 56e6a5ddbffb459468997735f47520bc

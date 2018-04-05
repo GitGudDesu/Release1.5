@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Coin
   - Input
+  - collectible
+  - escMenu
   layers:
   - Default
   - TransparentFX

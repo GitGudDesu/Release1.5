@@ -10,9 +10,10 @@ public class DeathMenu : MonoBehaviour {
     public Image backgroundImage;
     private bool isShowed = false;
     private float transition = 0.0f;
+    public GameObject pausemenuUI;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         gameObject.SetActive(false);
 	}
 	
@@ -26,6 +27,7 @@ public class DeathMenu : MonoBehaviour {
 	}
 
     public void ToggleEndMenu(float score) {
+        pausemenuUI.SetActive(false);
         gameObject.SetActive(true);
         scoreText.text = ((int)score).ToString();
         isShowed = true;
