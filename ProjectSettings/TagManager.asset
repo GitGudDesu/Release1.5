@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Coin
-  - Input
-  - collectible
-<<<<<<< HEAD
-  - escMenu
-=======
->>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
+  tags: []
   layers:
   - Default
   - TransparentFX
