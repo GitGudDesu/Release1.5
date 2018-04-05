@@ -38,28 +38,28 @@ public class DeathMenu : MonoBehaviour {
     public void Restart() {
         //direct db connection to where the db is stored in app
         //and open connection
-        const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
-        IDbConnection dbcon = new SqliteConnection(connectionString);
-        dbcon.Open();
-        IDbCommand dbcmd = dbcon.CreateCommand();
+        //const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+        //IDbConnection dbcon = new SqliteConnection(connectionString);
+        //dbcon.Open();
+        //IDbCommand dbcmd = dbcon.CreateCommand();
 
-        //create query for adding score
-        dbcmd = null;
-        dbcon.CreateCommand();
-        String command =
-        "INSERT INTO score " +
-        "(userID, totalScore, grade) " +
-        "VALUES (@two, @three, @four)";
+        ////create query for adding score
+        //dbcmd = null;
+        //dbcon.CreateCommand();
+        //String command =
+        //"INSERT INTO score " +
+        //"(userID, totalScore, grade) " +
+        //"VALUES (@two, @three, @four)";
 
-        //dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
-        dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
-        dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
-        dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
+        ////dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
+        //dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
+        //dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
+        //dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
 
-        string sql = command;
-        Debug.Log(sql);
-        dbcmd.CommandText = sql;
-        IDataReader reader = dbcmd.ExecuteReader();
+        //string sql = command;
+        //Debug.Log(sql);
+        //dbcmd.CommandText = sql;
+        //IDataReader reader = dbcmd.ExecuteReader();
         SceneManager.LoadScene("Menu");
 
     }
@@ -67,28 +67,28 @@ public class DeathMenu : MonoBehaviour {
     public void ToMenu() {
         //direct db connection to where the db is stored in app
         //and open connection
-        const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
-        IDbConnection dbcon = new SqliteConnection(connectionString);
-        dbcon.Open();
-        IDbCommand dbcmd = dbcon.CreateCommand();
+        //const string connectionString = "URI=file:Assets\\Plugins\\MumboJumbos.db";
+        //IDbConnection dbcon = new SqliteConnection(connectionString);
+        //dbcon.Open();
+        //IDbCommand dbcmd = dbcon.CreateCommand();
 
-        //create query for adding score
-        dbcmd = null;
-        dbcon.CreateCommand();
-        String command =
-        "INSERT INTO score " +
-        "(userID, totalScore, grade) " +
-        "VALUES  @two, @three, @four)";
+        ////create query for adding score
+        //dbcmd = null;
+        //dbcon.CreateCommand();
+        //String command =
+        //"INSERT INTO score " +
+        //"(userID, totalScore, grade) " +
+        //"VALUES  @two, @three, @four)";
 
-        //dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
-        dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
-        dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
-        dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
+        ////dbcmd.Parameters.Add(new SqliteParameter("@one", one)); 
+        //dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getStuID()));
+        //dbcmd.Parameters.Add(new SqliteParameter("@three", Int32.Parse(scoreText.text)));
+        //dbcmd.Parameters.Add(new SqliteParameter("@four", SubmitName.getStuGrade()));
 
-        string sql = command;
-        Debug.Log(sql);
-        dbcmd.CommandText = sql;
-        IDataReader reader = dbcmd.ExecuteReader();
+        //string sql = command;
+        //Debug.Log(sql);
+        //dbcmd.CommandText = sql;
+        //IDataReader reader = dbcmd.ExecuteReader();
         SceneManager.LoadScene("Menu");
     }
 }
