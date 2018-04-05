@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System;
 using System.Data;
 using Mono.Data.SqliteClient;
-using UnityEditor;
 
 
 
@@ -65,7 +64,12 @@ public class CoinPick : MonoBehaviour {
 	void Update() {
 		coins = GameObject.FindGameObjectsWithTag("Coin");
 		if (currentLetterIndex == 0) {
+<<<<<<< HEAD
 			wordText.text = currentWord;
+=======
+            if(wordText.text != null)
+			    wordText.text = currentWord;
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			wordStartCount = counter;
 		}
 

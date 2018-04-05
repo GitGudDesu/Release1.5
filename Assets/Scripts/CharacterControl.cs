@@ -109,9 +109,15 @@ public class CharacterControl : MonoBehaviour
             Destroy(hit.gameObject);
             ScoreforCoin.CoinScore++;
         }
+<<<<<<< HEAD
 
             if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
 
+=======
+
+            if (hit.point.z > transform.position.z + 0.1f && hit.gameObject.tag == "Coin") {
+
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			//remove the coin from field of play
 			Destroy(hit.gameObject);
 

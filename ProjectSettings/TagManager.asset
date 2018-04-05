@@ -8,7 +8,10 @@ TagManager:
   - Coin
   - Input
   - collectible
+<<<<<<< HEAD
   - escMenu
+=======
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
   layers:
   - Default
   - TransparentFX

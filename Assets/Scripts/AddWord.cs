@@ -7,12 +7,12 @@ using System.Data;
 using Mono.Data.SqliteClient;
 using UnityEngine.SceneManagement;
 
-public class CreateUser : MonoBehaviour
+public class AddWord : MonoBehaviour
 {
     //input/button game objects
-    public InputField StudentUserName;
-    public InputField FirstName;
-    public InputField LastName;
+    public InputField SetID;
+    public InputField Word;
+    public InputField Difficulty;
     public InputField Grade;
     public Button addButton;
     public Text addedText;
@@ -33,9 +33,9 @@ public class CreateUser : MonoBehaviour
     //when each input field has a change call the respective method to set it's variable to the input
     void Start()
     {
-        StudentUserName.onEndEdit.AddListener(SubmitUserName);
-        FirstName.onEndEdit.AddListener(SubmitFirstName);
-        LastName.onEndEdit.AddListener(SubmitLastName);
+        SetID.onEndEdit.AddListener(SubmitSetID);
+        Word.onEndEdit.AddListener(SubmitWord);
+        Difficulty.onEndEdit.AddListener(SubmitDifficulty);
         Grade.onEndEdit.AddListener(SubmitGrade);
     }
 
@@ -43,19 +43,19 @@ public class CreateUser : MonoBehaviour
 
 
     //add user name to local variable for later use
-    private void SubmitUserName(string input)
+    private void SubmitSetID(string input)
     {
         three = input;
         user = true;
     }
     //add user name to local variable for later use
-    private void SubmitFirstName(string input)
+    private void SubmitWord(string input)
     {
         four = input;
         first = true;
     }
     //add user name to local variable for later use
-    private void SubmitLastName(string input)
+    private void SubmitDifficulty(string input)
     {
         five = input;
         last = true;
@@ -65,9 +65,7 @@ public class CreateUser : MonoBehaviour
     {
         if (input.Length < 2)
         {
-            char[] placeHold = null;
-            placeHold = input.ToCharArray();
-            six = placeHold[0];
+            six = input.ToCharArray()[0];
             grad = true;
         }
 
@@ -78,10 +76,9 @@ public class CreateUser : MonoBehaviour
     public void ActivateAdd()
     {
         //check to see if neccesary variables were received
-        if (user && first && last && grad)
+        if (first)
         {
             //check if username is already taken again
-            CheckUsername.updateUserList();
             if (!(CheckUsername.IsTaken(four)))
             {
 
@@ -94,62 +91,59 @@ public class CreateUser : MonoBehaviour
                 //create query for adding user
                 IDbCommand dbcmd = dbcon.CreateCommand();
                 String command =
-                "INSERT INTO student " +
-                "(TeacherID, StuUserName, FirstName, LastName, Grade) " +
-<<<<<<< HEAD
+                "INSERT INTO wordlist " +
+                "(SetID, Word, Difficulty, TeacherID, Grade) " +
                 "VALUES (@two, @three, @four, @five, @six)";
-=======
-                "VALUES (@two, @three, @four, @five, @six);";
->>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 
                 //dbcmd.Parameters.Add(new SqliteParameter("@one", one));    
-                dbcmd.Parameters.Add(new SqliteParameter("@two", SubmitName.getTeachID()));
-                dbcmd.Parameters.Add(new SqliteParameter("@three", three));
-                dbcmd.Parameters.Add(new SqliteParameter("@four", four));
-                dbcmd.Parameters.Add(new SqliteParameter("@five", five));
+                dbcmd.Parameters.Add(new SqliteParameter("@two", three));
+                dbcmd.Parameters.Add(new SqliteParameter("@three", four));
+                dbcmd.Parameters.Add(new SqliteParameter("@four", five));
+                dbcmd.Parameters.Add(new SqliteParameter("@five", SubmitName.getTeachID()));
                 dbcmd.Parameters.Add(new SqliteParameter("@six", six));
                 string sql = command;
                 dbcmd.CommandText = sql;
                 IDataReader reader = dbcmd.ExecuteReader();
-                addedText.text = "User Added!";
+                addedText.text = "Word Added!";
                 addedText.enabled = true;
-                CheckUsername.updateUserList();
-                LastName.text = "";
-                Grade.text = "";
+                SetID.text = null;
+                Word.text = null;
+                Difficulty.text = null;
+                Grade.text = null;
 
-            }
+}
             else
             {
-                SceneManager.LoadScene("AddUser");
+                SceneManager.LoadScene("AddWord");
                 Reset();
             }
 
         }
         else
         {
-            SceneManager.LoadScene("AddUser");
+            SceneManager.LoadScene("AddWord");
             Reset();
         }
     }
 
     private void Reset()
     {
-    LastName.text =  null;
-    Grade.text = null;
-    addButton.interactable = false;
-    addedText.text = null;
-    three = null;
-    four = null;
-    five = null;
-    six = Convert.ToChar(0);
 
-    //check for important variables being entered
-    user = false;
-    first = false;
-    last = false;
-    grad = false;
+        Grade.text = null;
+        addButton.interactable = false;
+        addedText.text = null;
+        three = null;
+        four = null;
+        five = null;
+        six = Convert.ToChar(0);
 
-}
+        //check for important variables being entered
+        user = false;
+        first = false;
+        last = false;
+        grad = false;
+
+    }
 }
 
 

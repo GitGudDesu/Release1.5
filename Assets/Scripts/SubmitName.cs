@@ -14,6 +14,10 @@ public class SubmitName : MonoBehaviour
 	private ArrayList teacherList = new ArrayList();
 	private static int currTeachID = 0;
 	private static int currStuID = 0;
+<<<<<<< HEAD
+=======
+    private static string stuGrade;
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 
 
 	public Button LoginButton;
@@ -31,6 +35,7 @@ public class SubmitName : MonoBehaviour
 		}
 
 		public static int getTeachID()
+<<<<<<< HEAD
 		{
 			return currTeachID;
 		}
@@ -40,6 +45,21 @@ public class SubmitName : MonoBehaviour
 		}
 
 		private void CheckName(string arg0)
+=======
+		{
+			return currTeachID;
+		}
+		public static int getStuID()
+		{
+			return currStuID;
+		}
+    public static String getStuGrade()
+    {
+        return stuGrade;
+    }
+
+    private void CheckName(string arg0)
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			{
 
 
@@ -56,6 +76,7 @@ public class SubmitName : MonoBehaviour
 					"FROM student";
 				dbcmd.CommandText = sql;
 				IDataReader reader = dbcmd.ExecuteReader ();
+<<<<<<< HEAD
 
 				while (reader.Read()) 
 				{
@@ -132,6 +153,102 @@ public class SubmitName : MonoBehaviour
 				}
 
 
+=======
+
+				while (reader.Read()) 
+				{
+					string user = reader.GetString(0);
+
+					Debug.Log(user);
+
+					userList.Add(user);
+
+				}
+				//create query for teacher login
+				dbcmd = dbcon.CreateCommand ();
+				const string sql2 =
+					"SELECT TeachUserName " +
+					"FROM teacher";
+				dbcmd.CommandText = sql2;
+				reader = dbcmd.ExecuteReader ();
+
+				while (reader.Read()) 
+				{
+					string teacher = reader.GetString(0);
+
+					Debug.Log(teacher);
+
+					teacherList.Add(teacher);
+
+				}
+			    //if user is in DB store their userID for later use and allow them to login 
+				if (userList.Contains (arg0)) {
+				dbcmd = dbcon.CreateCommand();
+				const string sql4 =
+					"SELECT StuID " +
+					"FROM student " +
+					"WHERE StuUserName = @arg0";
+
+				dbcmd.Parameters.Add(new SqliteParameter("@arg0", arg0));
+				dbcmd.CommandText = sql4;
+				reader = dbcmd.ExecuteReader();
+				while (reader.Read())
+				{
+					int stuID = Int32.Parse(reader.GetString(0));
+
+					Debug.Log(currStuID);
+
+					currStuID = stuID;
+
+				}
+                dbcmd = dbcon.CreateCommand();
+                const string sql5 =
+                    "SELECT Grade " +
+                    "FROM student " +
+                    "WHERE StuUserName = @arg0";
+
+                dbcmd.Parameters.Add(new SqliteParameter("@arg0", arg0));
+                dbcmd.CommandText = sql4;
+                reader = dbcmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string grade = reader.GetString(0);
+
+                    Debug.Log(grade);
+
+                stuGrade = grade;
+
+                }
+            LoginButton.interactable = true;
+                //if teacher username found, store teacherID for later use and take them to the teacher menu
+				} else if (teacherList.Contains (arg0)) {
+					dbcmd = dbcon.CreateCommand();
+					const string sql3 =
+						"SELECT TeachID " +
+						"FROM teacher " +
+						"WHERE TeachUserName = @arg0";
+
+					dbcmd.Parameters.Add(new SqliteParameter("@arg0", arg0));
+					dbcmd.CommandText = sql3;
+					reader = dbcmd.ExecuteReader();
+					while (reader.Read())
+					{
+						int teachID = Int32.Parse(reader.GetString(0));
+
+						Debug.Log(currTeachID);
+
+						currTeachID = teachID;
+
+					}
+
+					SceneManager.LoadScene("TeacherMenu");
+				}
+				else {
+					SceneManager.LoadScene("Login");
+				}
+
+
+>>>>>>> bd3fc48caf272e42de70db7cc91b5491550365dd
 			}
 }
 
