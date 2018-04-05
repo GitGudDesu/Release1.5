@@ -22,6 +22,14 @@ public class GoToUser : MonoBehaviour
 	{
 		SceneManager.LoadScene("AddUser");
 	}
+    public void ToUserRemove()
+    {
+        SceneManager.LoadScene("RemoveUser");
+    }
+    public void ToWordAdd()
+    {
+        SceneManager.LoadScene("AddWord");
+    }
 
 
 }
